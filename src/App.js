@@ -14,6 +14,7 @@ function App() {
           <li onClick={() => setTab('form')} >フォーム</li>
         </ul>
       </header>
+      <hr/>
       {
         tab === 'list' ? <List /> : <Form />
       }
