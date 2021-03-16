@@ -1,12 +1,14 @@
 import { useState } from "react"
 
-export const Form = () => {
+export const Form = ({ onAddLang }) => {
     // ステート
     const [text,setText] = useState('');
     //
     const submitForm = (event) => {
         event.preventDefault();
         console.log(text);
+        // App.jsにある addLangを発火する
+        onAddLang(text);
     }
     //
     return (
@@ -17,6 +19,7 @@ export const Form = () => {
                     <input 
                     type="text" 
                     value={text} 
+                    // 変更されたらステートで保持する
                     onChange={(e) => setText(e.target.value)} />
                 </div>
                 <div>
