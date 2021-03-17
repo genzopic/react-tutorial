@@ -13,7 +13,6 @@ export const getLanguages = () => {
     return new Promise((resolve,reject) => {
         setTimeout(() => {
             resolve(LANGUAGES);
-            reject(['ERR']);
         },1000)
     })
 }
