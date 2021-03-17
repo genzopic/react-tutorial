@@ -1,12 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { List } from "./List";
 import { Form } from "./Form";
-import { LANGUAGES } from './const/languages';
+import { getLanguages } from './const/languages';
 //
 function App() {
   // ステート
   const [tab, setTab] = useState('list');
-  const [langs,setLangs] = useState(LANGUAGES);
+  const [langs,setLangs] = useState([]);
+  // 第２引数にしていしたステートに変化があると、イベントが発生する
+  useEffect(() => {
+    console.log('App.js:useEffect');
+    fetchLanguages();
+  },[langs,tab])
+  //
+  const fetchLanguages = async () => {
+    const languages = await getLanguages();
+    setLangs(languages);
+  }
   //
   const addLang = (lang) => {
     // スプレッドで追加
