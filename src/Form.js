@@ -1,5 +1,31 @@
+// import
 import { useState } from "react"
+import { Button } from "./components/button";
+import styled from "styled-components";
 
+// スタイル
+const Container = styled.div`
+    padding: 12px 64px;
+`
+const Label = styled.label`
+    display: flex;
+    color: #757575;
+    font-size: 14px;
+    font-weight: bold;
+`
+const Input = styled.input`
+    border-radius: 3px;
+    padding: 4px 8px;
+    border: 1px solid black;
+`
+const ButtonContainer = styled.div`
+    margin-top: 24px;
+`
+// Button を拡張してスタイルを設定
+const FormButton = styled(Button)`
+    width: 120px;
+`
+//
 export const Form = ({ onAddLang }) => {
     // ステート
     const [text,setText] = useState('');
@@ -12,20 +38,21 @@ export const Form = ({ onAddLang }) => {
     }
     //
     return (
-        <div>
+        <Container>
             <h4>新しい言語の追加</h4>
             <form onSubmit={submitForm}>
                 <div>
-                    <input 
+                    <Label>言語</Label>
+                    <Input 
                     type="text" 
                     value={text} 
                     // 変更されたらステートで保持する
                     onChange={(e) => setText(e.target.value)} />
                 </div>
-                <div>
-                    <button>追加</button>
-                </div>
+                <ButtonContainer>
+                    <FormButton>追加</FormButton>
+                </ButtonContainer>
             </form>
-        </div>
+        </Container>
     )
 }
