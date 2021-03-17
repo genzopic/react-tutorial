@@ -7,7 +7,7 @@ function App() {
   // ステート
   const [tab, setTab] = useState('list');
   const [langs,setLangs] = useState([]);
-  // 第２引数にしていしたステートに変化があると、イベントが発生する
+  // 第２引数にしていしたステートに変化（updating）があると、イベントが発生する.第二引数が[]からなら、moutingのみ呼ばれる
   useEffect(() => {
     console.log('App.js:useEffect');
     fetchLanguages();
