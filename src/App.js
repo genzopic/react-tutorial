@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { List } from "./List";
 import { Form } from "./Form";
 import { getLanguages } from './const/languages';
+import { withLoading } from "./hoc/withLoading";
 //
 const Header = styled.header`
   display: flex;
@@ -21,21 +22,11 @@ const HeaderLi = styled.li`
   cursor: pointer;
   border-bottom: ${props => props.focused ? '2px solid #F44336' : 'none'};
 `
-//
-function App() {
+// 
+function App({ data }) {
   // ステート
   const [tab, setTab] = useState('list');
-  const [langs,setLangs] = useState([]);
-  // 第２引数にしていしたステートに変化（updating）があると、イベントが発生する.第二引数が[]からなら、moutingのみ呼ばれる
-  useEffect(() => {
-    console.log('App.js:useEffect');
-    fetchLanguages();
-  },[langs,tab])
-  //
-  const fetchLanguages = async () => {
-    const languages = await getLanguages();
-    setLangs(languages);
-  }
+  const [langs,setLangs] = useState(data);
   //
   const addLang = (lang) => {
     // スプレッドで追加
@@ -60,4 +51,4 @@ function App() {
   );
 }
 //
-export default App;
+export default withLoading(App,getLanguages);
